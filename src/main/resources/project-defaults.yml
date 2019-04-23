@@ -1,0 +1,13 @@
+swarm:
+  datasources:
+    data-sources:
+      MyDS:
+        driver-name: postgresql
+        connection-url: jdbc:postgresql://localhost:5432/banking_sys
+        user-name: banking_user
+        password: banking_user
+        jta: true
+        use-java-context: true
+        min-pool-size: 8
+        max-pool-size: 20
+        pool-prefill: true
