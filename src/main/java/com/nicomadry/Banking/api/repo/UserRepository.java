@@ -6,12 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.jboss.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@ApplicationScoped
+@Dependent
 public class UserRepository {
 
   private EntityManager entityManager;
@@ -19,10 +19,10 @@ public class UserRepository {
   private Logger logger;
 
   @Inject
-  public void init(EntityManager entityManager, Logger logger)
+  public void init(Logger logger,EntityManager entityManager)
   {
-    this.entityManager = entityManager;
     this.logger = logger;
+    this.entityManager = entityManager;
   }
 
   public User findById(Long id)

@@ -3,6 +3,8 @@ package com.nicomadry.Banking.rest;
 import com.nicomadry.Banking.api.repo.UserRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
