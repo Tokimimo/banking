@@ -1,13 +1,23 @@
+# Ignore target folder
+target/
+
 # Compiled class file
 *.class
 
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+
+# User-specific stuff
+.idea/**/workspace.xml
+
 # IntelliJ files
-.idea
+.idea/*
 build
 out
-
-# Ignore target folder
-.target/
 
 # Log file
 *.log
