@@ -1,8 +1,10 @@
 package com.nicomadry.Banking.rest;
 
 import com.nicomadry.Banking.api.repo.UserRepository;
+import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Path;
@@ -16,10 +18,13 @@ import javax.ws.rs.Produces;
 public class HelloWorldEndpoint {
 
   private UserRepository userRepository;
+  private Logger log;
 
-  public void init(UserRepository userRepository)
+  @Inject
+  public void init(UserRepository userRepository, Logger log)
   {
     this.userRepository = userRepository;
+    this.log = log;
   }
 
   @GET
@@ -34,6 +39,7 @@ public class HelloWorldEndpoint {
   @Produces(MediaType.APPLICATION_JSON)
   public Response listUser()
   {
+    log.info("Received user request");
     return Response.ok(userRepository.findAllOrderedByName()).build();
   }
 }

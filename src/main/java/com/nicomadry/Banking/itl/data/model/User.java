@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@Table(name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
+@Table(schema = "public", name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User extends IdentifiableEntity {
 
   @NotEmpty
