@@ -12,6 +12,7 @@ target/
 .idea/modules
 
 # User-specific stuff
+.idea/workspace.xml
 .idea/**/workspace.xml
 
 # IntelliJ files
