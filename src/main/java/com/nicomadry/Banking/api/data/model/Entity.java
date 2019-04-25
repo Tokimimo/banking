@@ -1,4 +1,4 @@
-package com.nicomadry.Banking.api.entity;
+package com.nicomadry.Banking.api.data.model;
 
 /**
  * Identifier for all Entities. This will make the CRUD handling easier.

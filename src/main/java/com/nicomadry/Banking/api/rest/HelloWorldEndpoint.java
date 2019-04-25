@@ -1,4 +1,4 @@
-package com.nicomadry.Banking.rest;
+package com.nicomadry.Banking.api.rest;
 
 import com.nicomadry.Banking.api.repo.UserRepository;
 import org.jboss.logging.Logger;

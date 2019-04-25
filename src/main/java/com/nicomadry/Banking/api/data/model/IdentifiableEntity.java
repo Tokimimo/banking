@@ -1,4 +1,4 @@
-package com.nicomadry.Banking.api.entity;
+package com.nicomadry.Banking.api.data.model;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

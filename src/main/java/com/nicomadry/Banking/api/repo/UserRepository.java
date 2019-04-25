@@ -1,6 +1,6 @@
 package com.nicomadry.Banking.api.repo;
 
-import com.nicomadry.Banking.itl.data.model.User;
+import com.nicomadry.Banking.api.data.entity.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;

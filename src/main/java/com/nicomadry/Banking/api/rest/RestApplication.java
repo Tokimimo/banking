@@ -1,4 +1,4 @@
-package com.nicomadry.Banking.rest;
+package com.nicomadry.Banking.api.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

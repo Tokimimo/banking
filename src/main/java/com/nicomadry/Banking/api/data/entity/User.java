@@ -1,6 +1,6 @@
-package com.nicomadry.Banking.itl.data.model;
+package com.nicomadry.Banking.api.data.entity;
 
-import com.nicomadry.Banking.api.entity.IdentifiableEntity;
+import com.nicomadry.Banking.api.data.model.IdentifiableEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,22 +13,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@Table(schema = "public", name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
+@Table(schema = "public", name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User extends IdentifiableEntity {
 
   @NotEmpty
   @Size(min = 1, max = 255)
-  @Column(name = "USER_NAME", nullable = false, updatable = false, unique = true)
+  @Column(name = "username", nullable = false, updatable = false, unique = true)
   @Pattern(regexp = "[A-Za-z ]*", message = "The username must contain only letters and spaces")
   private String username;
 
   @NotEmpty
-  @Column(name = "PASSWORD", nullable = false)
+  @Column(name = "password", nullable = false)
   @Size(min = 1, max = 255)
   private String password;
 
   @NotEmpty
-  @Column(name = "ADDRESS", nullable = false)
+  @Column(name = "password_salt", nullable = false)
+  @Size(min = 1, max = 255)
+  private String passwordSalt;
+
+  @NotEmpty
+  @Column(name = "address", nullable = false)
   @Size(min = 1, max = 255)
   private String address;
 

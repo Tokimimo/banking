@@ -1,4 +1,4 @@
-package com.nicomadry.Banking.api.entity;
+package com.nicomadry.Banking.api.data.model;
 
 import java.io.Serializable;
 
