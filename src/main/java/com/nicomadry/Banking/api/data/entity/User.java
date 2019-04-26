@@ -1,5 +1,6 @@
 package com.nicomadry.Banking.api.data.entity;
 
+import com.nicomadry.Banking.api.data.dto.UserDTO;
 import com.nicomadry.Banking.api.data.model.IdentifiableEntity;
 
 import javax.persistence.*;
@@ -11,16 +12,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @NamedQueries({
         @NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u ORDER BY u.username DESC"),
-        @NamedQuery(name = User.FIND_BY_NAME_AND_PASSWORD, query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"),
-        @NamedQuery(name = User.COUNT_ALL, query = "SELECT COUNT(u) FROM User u")
+        @NamedQuery(name = User.FIND_BY_NAME, query = "SELECT u FROM User u WHERE u.username = :username"),
+        @NamedQuery(name = User.COUNT_ALL, query = "SELECT COUNT(u) FROM User u"),
+        @NamedQuery(name = User.VALIDATE_NAME_AND_PASSWORD, query = "SELECT u FROM User u WHERE u.username = :username and u.password = :password")
 })
 @XmlRootElement
-@Table(schema = "public", name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
+@Table(schema = "public", name = "user", uniqueConstraints = {@UniqueConstraint(name = "UQ_USER_ID", columnNames = "id"), @UniqueConstraint(name = "UQ_USER_USERNAME", columnNames = "username")})
 public class User extends IdentifiableEntity {
 
   public static final String FIND_ALL = "User.findAll";
   public static final String COUNT_ALL = "User.countAll";
-  public static final String FIND_BY_NAME_AND_PASSWORD = "User.findByNameAndPassword";
+  public static final String FIND_BY_NAME = "User.findByName";
+  public static final String VALIDATE_NAME_AND_PASSWORD = "User.validateUsernameAndPassword";
 
   @NotEmpty
   @Size(min = 1, max = 255)
@@ -42,6 +45,20 @@ public class User extends IdentifiableEntity {
   @Column(name = "address", nullable = false)
   @Size(min = 1, max = 255)
   private String address;
+
+  public User(String username, String password, String address)
+  {
+    this.username = username;
+    this.password = password;
+    this.address = address;
+  }
+
+  public User(UserDTO userDTO)
+  {
+    this.username = userDTO.getUsername();
+    this.password = userDTO.getPassword();
+    this.address = userDTO.getAddress();
+  }
 
   public String getUsername()
   {
@@ -73,4 +90,13 @@ public class User extends IdentifiableEntity {
     this.address = address;
   }
 
+  public String getPasswordSalt()
+  {
+    return passwordSalt;
+  }
+
+  public void setPasswordSalt(String passwordSalt)
+  {
+    this.passwordSalt = passwordSalt;
+  }
 }

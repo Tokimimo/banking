@@ -43,7 +43,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     try {
       // Validate the token
-      Key key = Keys.secretKeyFor(SignatureAlgorithm.ES256); // TODO: Change with custom signing key
+      Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // TODO: Change with custom signing key
+      logger.info("Created Key: " + key.toString());
       Jwts.parser().setSigningKey(key).parseClaimsJws(token);
       logger.info("#### valid token : " + token);
     } catch (Exception e) {

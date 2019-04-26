@@ -1,14 +1,14 @@
 package com.nicomadry.Banking.api.repo;
 
+import com.nicomadry.Banking.api.data.dto.UserDTO;
 import com.nicomadry.Banking.api.data.entity.User;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
+import com.nicomadry.Banking.itl.util.PasswordUtils;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Dependent
@@ -19,7 +19,7 @@ public class UserRepository {
   private Logger logger;
 
   @Inject
-  public void init(Logger logger,EntityManager entityManager)
+  public void init(Logger logger, EntityManager entityManager)
   {
     this.logger = logger;
     this.entityManager = entityManager;
@@ -33,12 +33,34 @@ public class UserRepository {
   @SuppressWarnings("unchecked")
   public List<User> findAllOrderedByName()
   {
-    Session session = (Session) entityManager.getDelegate();
-    Criteria cb = session.createCriteria(User.class);
+    TypedQuery<User> query = entityManager.createNamedQuery(User.FIND_ALL, User.class);
+    return query.getResultList();
+  }
 
-    cb.addOrder(Order.asc("username"));
+  public void createUser(UserDTO userDTO)
+  {
+    if (!isUsernameUnique(userDTO.getUsername())) {
+      // TODO: Throw Exception
+    }
 
-    return (List<User>) cb.list();
+    String salt = PasswordUtils.getSalt();
+
+    User user = new User(userDTO);
+
+    user.setPasswordSalt(salt);
+    user.setPassword(PasswordUtils.hashPassword(userDTO.getPassword(), salt));
+
+    entityManager.persist(user);
+  }
+
+  private boolean isUsernameUnique(String username)
+  {
+    TypedQuery<User> query = entityManager.createNamedQuery(User.FIND_BY_NAME, User.class);
+    query.setParameter("username", username);
+
+    final List<User> userList = query.getResultList();
+
+    return userList.isEmpty();
   }
 
 }
