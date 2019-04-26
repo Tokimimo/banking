@@ -8,21 +8,6 @@ swarm:
         password: banking_user
         jta: true
         use-java-context: true
-        min-pool-size: 8
+        min-pool-size: 4
         max-pool-size: 20
         pool-prefill: true
-  keycloak:
-    secure-deployments:
-      banking.war:
-        auth-server-url: "http://localhost:8280/auth"
-        realm: banking
-        resource: test-client
-        public-client: true
-        ssl-required: none
-    deployment:
-      banking.war:
-        web:
-          security-constraints:
-            - url-pattern: /api/*
-              roles:
-                - "*"

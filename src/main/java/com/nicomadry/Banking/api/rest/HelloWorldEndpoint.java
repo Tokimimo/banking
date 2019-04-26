@@ -1,5 +1,6 @@
 package com.nicomadry.Banking.api.rest;
 
+import com.nicomadry.Banking.api.data.annotation.Authenticated;
 import com.nicomadry.Banking.api.repo.UserRepository;
 import org.jboss.logging.Logger;
 
@@ -35,11 +36,12 @@ public class HelloWorldEndpoint {
   }
 
   @GET
-  @Path("/user")
+  @Path("/authenticated")
   @Produces(MediaType.APPLICATION_JSON)
+  @Authenticated
   public Response listUser()
   {
-    log.info("Received user request");
+    log.info("User seems to be authenticated");
     return Response.ok(userRepository.findAllOrderedByName()).build();
   }
 }

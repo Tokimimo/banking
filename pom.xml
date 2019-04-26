@@ -56,10 +56,6 @@
     <dependencies>
         <dependency>
             <groupId>io.thorntail</groupId>
-            <artifactId>keycloak</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.thorntail</groupId>
             <artifactId>swagger</artifactId>
         </dependency>
         <dependency>
@@ -108,6 +104,23 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${version.postgresql}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.10.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.10.5</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>
