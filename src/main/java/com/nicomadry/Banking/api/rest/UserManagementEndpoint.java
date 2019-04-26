@@ -1,7 +1,6 @@
 package com.nicomadry.Banking.api.rest;
 
 import com.nicomadry.Banking.api.data.dto.UserDTO;
-import com.nicomadry.Banking.api.data.entity.User;
 import com.nicomadry.Banking.api.repo.UserRepository;
 import org.jboss.logging.Logger;
 

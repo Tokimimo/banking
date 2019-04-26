@@ -38,6 +38,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     // Get the HTTP Authorization header from the request
     String authorizationHeader = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
+    if (authorizationHeader == null) {
+      logger.error("#### Received Request without Authorization header. Aborting");
+      containerRequestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+    }
+
     // Extract the token from the HTTP Authorization header
     String token = authorizationHeader.substring("Bearer".length()).trim();
 

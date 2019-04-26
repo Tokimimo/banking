@@ -1,5 +1,6 @@
 package com.nicomadry.Banking.api.rest;
 
+import com.nicomadry.Banking.api.data.annotation.SystemZone;
 import com.nicomadry.Banking.api.data.entity.User;
 import com.nicomadry.Banking.itl.util.PasswordUtils;
 import io.jsonwebtoken.Jwts;
@@ -41,7 +42,7 @@ public class AuthenticationEndpoint {
   private Clock clock;
 
   @Inject
-  public void init(Logger log, EntityManager entityManager, Clock clock)
+  public void init(Logger log, EntityManager entityManager, @SystemZone Clock clock)
   {
     this.log = log;
     this.entityManager = entityManager;
