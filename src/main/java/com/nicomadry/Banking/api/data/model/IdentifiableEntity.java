@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * This abstract super class of entities is used to omit the need to add the ID field and entity mapping to every identifiable entity.
+ */
 @MappedSuperclass
 public abstract class IdentifiableEntity implements Entity {
   /**
@@ -13,8 +16,8 @@ public abstract class IdentifiableEntity implements Entity {
 
   @Id
   @NotNull
-  @Column(name = "ID", precision = 9, nullable = false, updatable = false)
-  @GeneratedValue(strategy= GenerationType.AUTO)
+  @Column( name = "ID", precision = 9, nullable = false, updatable = false )
+  @GeneratedValue( strategy = GenerationType.SEQUENCE )
   private Long id;
 
   @Override
@@ -23,8 +26,8 @@ public abstract class IdentifiableEntity implements Entity {
     return id;
   }
 
-  @SuppressWarnings("unused")
-  public void setId(Long id)
+  @SuppressWarnings( "unused" )
+  public void setId( Long id )
   {
     this.id = id;
   }
@@ -47,9 +50,9 @@ public abstract class IdentifiableEntity implements Entity {
   @Override
   public String toString()
   {
-    StringBuffer sb = new StringBuffer(getClass().getName());
-    sb.append("[ ID=");
-    sb.append(id);
+    StringBuffer sb = new StringBuffer( getClass().getName() );
+    sb.append( "[ id=" );
+    sb.append( id );
 
     return sb.toString();
   }

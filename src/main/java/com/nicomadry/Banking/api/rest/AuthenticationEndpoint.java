@@ -1,18 +1,13 @@
 package com.nicomadry.Banking.api.rest;
 
-import com.nicomadry.Banking.api.data.annotation.SystemZone;
+import com.nicomadry.Banking.api.data.annotation.Authenticated;
 import com.nicomadry.Banking.api.data.dto.UserDTO;
-import com.nicomadry.Banking.api.data.entity.User;
-import com.nicomadry.Banking.api.service.JwtKeyService;
-import com.nicomadry.Banking.itl.util.PasswordUtils;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.nicomadry.Banking.api.service.AuthenticationService;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,105 +15,76 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.security.Key;
-import java.time.Clock;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
+import static com.nicomadry.Banking.api.rest.AuthenticationEndpoint.BASE_API_URI;
+import static java.util.Objects.requireNonNull;
 import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @ApplicationScoped
-@Path("/auth")
+@Path( BASE_API_URI )
 public class AuthenticationEndpoint {
+
+  static final String BASE_API_URI = "/auth";
+  private static final String LOGIN_URI = "/login";
+  private static final String LOGOUT_URI = "/logout";
+
+  private static final String BEARER = "Bearer ";
 
   @Context
   private UriInfo uriInfo;
 
   private Logger log;
 
-  private EntityManager entityManager;
-
-  private Clock clock;
-
-  private JwtKeyService jwtKeyService;
+  private AuthenticationService authenticationService;
 
   @Inject
-  public void init(Logger log, EntityManager entityManager, @SystemZone Clock clock, JwtKeyService jwtKeyService)
+  public void init( Logger log, AuthenticationService authenticationService )
   {
     this.log = log;
-    this.entityManager = entityManager;
-    this.clock = clock;
-    this.jwtKeyService = jwtKeyService;
+    this.authenticationService = authenticationService;
   }
 
   @POST
-  @Path("/login")
-  @Consumes(APPLICATION_JSON)
-  @Produces(APPLICATION_JSON)
-  public Response authenticateUser(UserDTO userDTO)
+  @Path( LOGIN_URI )
+  @Consumes( APPLICATION_JSON )
+  @Produces( APPLICATION_JSON )
+  public Response login( UserDTO userDTO ) throws SecurityException
   {
+    requireNonNull(userDTO, "The userDTO must not be null");
+    // TESTED AND WORKING
     try {
-      final String username = userDTO.getUsername();
-      final String password = userDTO.getPassword();
+      String token = authenticationService.login( userDTO, uriInfo );
 
-      // Authenticate the user using the credentials provided
-      authenticate(username, password);
-
-      // Issue a token for the user
-      String token = issueToken(username);
-
-      // Return the token on the response
-      return Response.ok().header(AUTHORIZATION, "Bearer " + token).build();
-    } catch (Exception e) {
-      log.error("Login failed with Reason: " + e.getMessage(), e);
-      return Response.status(UNAUTHORIZED).build();
+      return Response.ok().header( AUTHORIZATION, BEARER + token ).build();
+    }
+    catch ( Exception e ) {
+      log.error( "Login failed with Reason: " + e.getMessage(), e );
+      return Response.status( UNAUTHORIZED ).build();
     }
   }
 
-  private void authenticate(String username, String password) throws Exception
+  @POST
+  @Path( LOGOUT_URI )
+  @Consumes( APPLICATION_JSON )
+  @Produces( APPLICATION_JSON )
+  @Authenticated
+  public Response logout( HttpServletRequest httpServletRequest ) throws SecurityException
   {
-    TypedQuery<User> query = entityManager.createNamedQuery(User.FIND_BY_NAME, User.class);
-    query.setParameter("username", username);
+    requireNonNull(httpServletRequest, "The httpServletRequest must not be null");
 
-    User user = query.getSingleResult();
+    final String authenticationHeader = httpServletRequest.getHeader( AUTHORIZATION );
 
-    if (user == null) {
-      log.error("User for [" + username + "] not found");
-      throw new SecurityException("Invalid user/password");
+    try {
+      String token = authenticationService.logout( authenticationHeader, uriInfo );
+
+      return Response.ok().header( AUTHORIZATION, "Bearer " + token ).build();
     }
-
-    if (!PasswordUtils.checkPassword(password, user.getPassword())) {
-      log.error("Password not valid for [" + username + "]");
-      throw new SecurityException("Invalid user/password");
+    catch ( Exception e ) {
+      log.error( "Logout failed with Reason: " + e.getMessage(), e );
+      return Response.status( UNAUTHORIZED ).build();
     }
-  }
-
-  private String issueToken(String username)
-  {
-    log.debug("Creating key for JWT Token");
-    Key key = jwtKeyService.generateKey();
-
-    log.debug("Created JWT Key: " + key.toString());
-
-    final String jwtsToken = Jwts.builder()
-            .setSubject(username)
-            .setIssuer(uriInfo.getAbsolutePath().toString())
-            .setIssuedAt(new Date())
-            .setExpiration(createExpirationDate())
-            .signWith(key, SignatureAlgorithm.HS512)
-            .compact();
-
-    log.debug("Created jwts token: " + jwtsToken);
-
-    return jwtsToken;
-  }
-
-  private Date createExpirationDate()
-  {
-    final ZonedDateTime expirationDate = ZonedDateTime.now(clock).plusMinutes(15);
-    return Date.from(expirationDate.toInstant());
   }
 
 }

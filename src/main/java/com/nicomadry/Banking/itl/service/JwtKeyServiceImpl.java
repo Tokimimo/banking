@@ -12,6 +12,7 @@ import java.security.Key;
 @Typed(JwtKeyService.class)
 public class JwtKeyServiceImpl implements JwtKeyService {
 
+  // TODO: Replace this workaround with the retrieving of a key from a keystore ( LATER_VERSION )
   private static Key signingKey;
 
   @Override

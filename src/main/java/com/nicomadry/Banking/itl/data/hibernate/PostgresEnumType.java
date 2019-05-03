@@ -8,15 +8,19 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+/**
+ * This class is used to register {@link Enum Enum's} for usage in the postgres database.
+ */
 public class PostgresEnumType extends EnumType {
+
   public void nullSafeSet(
           PreparedStatement st,
           Object value,
           int index,
-          SharedSessionContractImplementor session)
+          SharedSessionContractImplementor session )
           throws HibernateException, SQLException
   {
-    if(value == null) {
+    if ( value == null ) {
       st.setNull( index, Types.OTHER );
     }
     else {

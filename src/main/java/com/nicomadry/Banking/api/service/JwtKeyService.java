@@ -5,9 +5,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.security.Key;
 
 /**
- * This service will provide the system with the {@link Key} used to sign and verify JWT tokens.
- * The first generated key will be saved in a static variable and will be returned by every call to {@link JwtKeyService#generateKey()}.
- * Only a call to {@link JwtKeyService#generateNewKey()} will then trigger the generation of a new key. However the old key will be invalidated.
+ * This service will provide the system with the {@link Key} used to sign and verify JWT tokens. The first generated key will be saved in a
+ * static variable and will be returned by every call to {@link JwtKeyService#generateKey()}. Only a call to {@link
+ * JwtKeyService#generateNewKey()} will then trigger the generation of a new key. However the old key will be invalidated.
  */
 public interface JwtKeyService {
 

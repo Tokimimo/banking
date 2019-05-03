@@ -1,0 +1,810 @@
+{
+	"info": {
+		"_postman_id": "bca550bf-0051-40c2-bf70-e3d14537c588",
+		"name": "Banking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTg1MzM3LCJleHAiOjE1NTgxODYyMzd9.3MJx2V2vJJCca0DCyRlEgGc74feePSk6rHFuzs87GUDuVHB-gZ1V4CgOKc5QJy6NqRaQVWC_NGPodlOvdm4uIA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"test\",\n\t\"address\": \"Germany\",\n\t\"password\": \"test2019!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU3ODQ4MDAwLCJleHAiOjE1NTc4NDg5MDB9.OIH9EbDyCzCUK_FuFEGS9e1uV62nk6H3AppGFlefVWd4mZapr76OIevkKsMx0XaJHeDgzSVOO7w8XkTGIfSjBQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"address\": \"Germany2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"update",
+								"1"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the user which will be updated by this request."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU3NzczMTExLCJleHAiOjE1NTc3NzQwMTF9.Iop2ba3wuq6LhmOidYZqfxTBN2lKaCLewEWss2SNv--B2ZYEzu9v2e5kgmE8eVGbbGvrRXs69FTDr7GlERtP8w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"delete",
+								"3"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the user which will be deleted by this request."
+					},
+					"response": []
+				},
+				{
+					"name": "List all User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU3NzczMTExLCJleHAiOjE1NTc3NzQwMTF9.Iop2ba3wuq6LhmOidYZqfxTBN2lKaCLewEWss2SNv--B2ZYEzu9v2e5kgmE8eVGbbGvrRXs69FTDr7GlERtP8w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List bank accounts ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTg4MjA5LCJleHAiOjE1NTgxODkxMDl9.ND4LD1MQzf6VgU13POkEGxc_HYidxU-I6gMmC9to2KlmvAQ6UbWJmrvbiKAeFaTJVHlhLDHEp1yzmRpXRMTCow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/listAccounts/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"listAccounts",
+								"2"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the user which will be used to retrieve the accounts of. Only bank accounts this user is associated with will be returned."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bank Account Management",
+			"item": [
+				{
+					"name": "Create Bank Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjYyMjk2LCJleHAiOjE1NTgyNjMxOTZ9.TQ4x7N-FaS-21AfnzvHjuR3uXft-Ig0WqSZqoSShV6A5VKzjcDDYwRe6t-SgxwJHUpDx9xfM51OLOqRIKb8KcA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accountNumber\": \"DE79400105583425712472\",\n\t\"accountName\": \"Admin's account\",\n\t\"accountCurrency\": \"EUR\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bankAccount/create/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bankAccount",
+								"create",
+								"1"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the user which requests the creation of the account and will automatically be added as a user of the account."
+					},
+					"response": []
+				},
+				{
+					"name": "List all bank accounts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTkwMDQxLCJleHAiOjE1NTgxOTA5NDF9.WcaU7aPXv7l4M7xPNY5lMp2XAb9viSwMKPgUVxWiYfmr7-KGc_tSQaI1Bol815dZ6_D4mku-rcsM7RVZzg_How",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/bankAccount/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bankAccount",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update bank account",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU3NzczMTExLCJleHAiOjE1NTc3NzQwMTF9.Iop2ba3wuq6LhmOidYZqfxTBN2lKaCLewEWss2SNv--B2ZYEzu9v2e5kgmE8eVGbbGvrRXs69FTDr7GlERtP8w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accountCurrency\": \"USD\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bankAccount/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bankAccount",
+								"update",
+								"1"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the bank account which will be updated by this request."
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTg4MjA5LCJleHAiOjE1NTgxODkxMDl9.ND4LD1MQzf6VgU13POkEGxc_HYidxU-I6gMmC9to2KlmvAQ6UbWJmrvbiKAeFaTJVHlhLDHEp1yzmRpXRMTCow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"nico\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bankAccount/addUser/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bankAccount",
+								"addUser",
+								"1"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the bank account a user will be added to.\n\nThe user itself is added in the payload and is identified by the name ( which is system unique )"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove user from account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTg4MjA5LCJleHAiOjE1NTgxODkxMDl9.ND4LD1MQzf6VgU13POkEGxc_HYidxU-I6gMmC9to2KlmvAQ6UbWJmrvbiKAeFaTJVHlhLDHEp1yzmRpXRMTCow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"nico\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bankAccount/removeUser/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bankAccount",
+								"removeUser",
+								"1"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the bank account a user will be removed from.\n\nThe user itself is added in the payload and is identified by the name ( which is system unique )"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete bank account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTg4MjA5LCJleHAiOjE1NTgxODkxMDl9.ND4LD1MQzf6VgU13POkEGxc_HYidxU-I6gMmC9to2KlmvAQ6UbWJmrvbiKAeFaTJVHlhLDHEp1yzmRpXRMTCow"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/bankAccount/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bankAccount",
+								"delete",
+								"1"
+							]
+						},
+						"description": "The ID at the end of the request is the ID of the bank account which will be deleted by this request"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"admin2019!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Balance",
+			"item": [
+				{
+					"name": "List currencies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTkwMDQxLCJleHAiOjE1NTgxOTA5NDF9.WcaU7aPXv7l4M7xPNY5lMp2XAb9viSwMKPgUVxWiYfmr7-KGc_tSQaI1Bol815dZ6_D4mku-rcsM7RVZzg_How",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/balance/listCurrencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"listCurrencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current account balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjY0OTY2LCJleHAiOjE1NTgyNjU4NjZ9.TRqhUNgc4xr6N2cOCZv11SgfrlXguaGrQwGo9QMPzD-vHkuJfojskywgl4jQLnwwFnHs5pAhFtFPaT-wq-66UQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/balance/currentBalance/2/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"currentBalance",
+								"2",
+								"2"
+							]
+						},
+						"description": "The first ID is from the bank account the balance is requested from.\n\nThe second ID is from the user which is requesting to retrieve the current balance ( Authorization check )"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Deposit money",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjYyMjk2LCJleHAiOjE1NTgyNjMxOTZ9.TQ4x7N-FaS-21AfnzvHjuR3uXft-Ig0WqSZqoSShV6A5VKzjcDDYwRe6t-SgxwJHUpDx9xfM51OLOqRIKb8KcA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\": 500,\n\t\"currency\": \"EUR\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/payment/deposit/2/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payment",
+								"deposit",
+								"2",
+								"2"
+							]
+						},
+						"description": "The first ID is from the bank account the balance is added to.\n\nThe second ID is from the user which is requesting to add the balance.\n\nThe balance to deposit and the currency will be set in the payload"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Payment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjY0OTY2LCJleHAiOjE1NTgyNjU4NjZ9.TRqhUNgc4xr6N2cOCZv11SgfrlXguaGrQwGo9QMPzD-vHkuJfojskywgl4jQLnwwFnHs5pAhFtFPaT-wq-66UQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\": 500,\n\t\"currency\": \"EUR\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/payment/delete/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payment",
+								"delete",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perform Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjY0OTY2LCJleHAiOjE1NTgyNjU4NjZ9.TRqhUNgc4xr6N2cOCZv11SgfrlXguaGrQwGo9QMPzD-vHkuJfojskywgl4jQLnwwFnHs5pAhFtFPaT-wq-66UQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\": 50,\n\t\"currency\": \"EUR\",\n\t\"beneficiaryAccountNumber\": \"DE77500105175424592471\",\n\t\"beneficiaryName\": \"Admin\",\n\t\"communication\": \"TRANSACTION TEST\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/payment/performTransaction/2/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payment",
+								"performTransaction",
+								"2",
+								"2"
+							]
+						},
+						"description": "The first ID is from the bank account the money will be transfered from.\n\nThe second ID is from the user which is requesting to perform the transaction.\n\nThe payload holds all informations needed for the transaction."
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw money",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MTkwMDQxLCJleHAiOjE1NTgxOTA5NDF9.WcaU7aPXv7l4M7xPNY5lMp2XAb9viSwMKPgUVxWiYfmr7-KGc_tSQaI1Bol815dZ6_D4mku-rcsM7RVZzg_How"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\": 50,\n\t\"currency\": \"EUR\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/payment/withdraw/2/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payment",
+								"withdraw",
+								"2",
+								"1"
+							]
+						},
+						"description": "The first ID is from the bank account the balance is withdrawn of.\n\nThe second ID is from the user which is requesting to withdraw the money ( Authorization check )"
+					},
+					"response": []
+				},
+				{
+					"name": "List payments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjY0OTY2LCJleHAiOjE1NTgyNjU4NjZ9.TRqhUNgc4xr6N2cOCZv11SgfrlXguaGrQwGo9QMPzD-vHkuJfojskywgl4jQLnwwFnHs5pAhFtFPaT-wq-66UQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/payment/list/DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payment",
+								"list",
+								"DESC"
+							]
+						},
+						"description": "The Ordering is entered as last part of the URI and can only be ASC or DESC"
+					},
+					"response": []
+				},
+				{
+					"name": "List Beneficiary payments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hdXRoL2xvZ2luIiwiaWF0IjoxNTU4MjY0MDU3LCJleHAiOjE1NTgyNjQ5NTd9.TMNoJ6Tc5WHYhPdjBUPRT4W9n22ORQRcRf07MBbbfjCJGpfDs1sU1r7YQnyxfBDecKvZ_H-mlwfHqt4waybFVQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"iban\": \"DE77500105175424592472\",\n\t\"periodStart\": \"2019-05-19T10:00:00+01:00\",\n\t\"periodEnd\": \"2019-05-20T14:00:00+01:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/payment/listBeneficiary/ASC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payment",
+								"listBeneficiary",
+								"ASC"
+							]
+						},
+						"description": "The Ordering is entered as last part of the URI and can only be ASC or DESC"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
