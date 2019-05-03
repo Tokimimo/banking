@@ -1,5 +1,8 @@
 package com.nicomadry.Banking.api.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class UserDTO implements Serializable {
@@ -10,7 +13,8 @@ public class UserDTO implements Serializable {
 
   private String address;
 
-  public UserDTO(String username, String password, String address)
+  @JsonCreator
+  public UserDTO(@JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("address") String address)
   {
     this.username = username;
     this.password = password;
@@ -45,5 +49,12 @@ public class UserDTO implements Serializable {
   public void setUsername(String username)
   {
     this.username = username;
+  }
+
+  @Override
+  public String toString()
+  {
+
+    return super.toString();
   }
 }

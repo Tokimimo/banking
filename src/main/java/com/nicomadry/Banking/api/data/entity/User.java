@@ -46,6 +46,11 @@ public class User extends IdentifiableEntity {
   @Size(min = 1, max = 255)
   private String address;
 
+  public User()
+  {
+    // empty constructor for hibernate
+  }
+
   public User(String username, String password, String address)
   {
     this.username = username;

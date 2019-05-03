@@ -47,6 +47,14 @@
                         <goals>
                             <goal>package</goal>
                         </goals>
+                        <configuration>
+                            <properties>
+                                <swarm.debug.port>8880</swarm.debug.port>
+                                <debug.port>8880</debug.port>
+                                <swarm.debug.bootstrap>true</swarm.debug.bootstrap>
+                                <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+                            </properties>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

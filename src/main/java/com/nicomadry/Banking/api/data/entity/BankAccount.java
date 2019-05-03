@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,7 +25,7 @@ public class BankAccount extends IdentifiableEntity {
   private String accountNumber;
 
   @OneToMany
-  @JoinColumn(name = "user_id" )
+  @JoinColumn(name = "user_id")
   private Set<User> users = new HashSet<>();
 
   @NotEmpty
@@ -36,10 +37,15 @@ public class BankAccount extends IdentifiableEntity {
   @JoinColumn(name = "balance_id")
   private List<Balance> balances;
 
-  @NotEmpty
+  @NotNull
   @Column(name = "blocked", nullable = false)
-  @ColumnDefault( "false" )
+  @ColumnDefault("false")
   private Boolean blocked;
+
+  public BankAccount()
+  {
+    // empty constructor for hibernate
+  }
 
   public String getAccountNumber()
   {

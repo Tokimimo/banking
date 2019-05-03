@@ -6,6 +6,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/userManagement")
 @ApplicationScoped
+@Transactional(value = Transactional.TxType.REQUIRED, rollbackOn = Exception.class)
 public class UserManagementEndpoint {
 
   private Logger log;
@@ -34,8 +36,6 @@ public class UserManagementEndpoint {
   @Produces(MediaType.APPLICATION_JSON)
   public Response createUser(UserDTO user) throws Exception
   {
-    log.info("Persisting User: " + user.getUsername());
-
     userRepository.createUser(user);
 
     return Response.ok(user).build();

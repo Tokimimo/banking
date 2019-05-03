@@ -1,9 +1,8 @@
 package com.nicomadry.Banking.api.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class IdentifiableEntity implements Entity {
@@ -13,8 +12,9 @@ public abstract class IdentifiableEntity implements Entity {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @NotEmpty
-  @Column(name = "ID", precision = 9, scale = 0, nullable = false, updatable = false)
+  @NotNull
+  @Column(name = "ID", precision = 9, nullable = false, updatable = false)
+  @GeneratedValue(strategy= GenerationType.AUTO)
   private Long id;
 
   @Override

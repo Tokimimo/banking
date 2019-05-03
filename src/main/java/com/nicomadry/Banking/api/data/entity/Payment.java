@@ -6,6 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.ZonedDateTime;
@@ -15,7 +16,7 @@ import java.time.ZonedDateTime;
 @Table(schema = "public", name = "payment", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Payment extends IdentifiableEntity {
 
-  @NotEmpty
+  @NotNull
   @Column(name = "amount", nullable = false)
   private float amount;
 
@@ -42,7 +43,7 @@ public class Payment extends IdentifiableEntity {
   @Size(min = 1, max = 20)
   private String communication;
 
-  @NotEmpty
+  @NotNull
   @Column(name = "creation_date", nullable = false)
   private ZonedDateTime creationDate;
 
@@ -51,4 +52,89 @@ public class Payment extends IdentifiableEntity {
   @Column(name = "status", nullable = false)
   @Size(max = 8)
   private PaymentStatus status;
+
+  public Payment()
+  {
+    // empty constructor for hibernate
+  }
+
+  public float getAmount()
+  {
+    return amount;
+  }
+
+  public void setAmount(float amount)
+  {
+    this.amount = amount;
+  }
+
+  public String getCurrency()
+  {
+    return currency;
+  }
+
+  public void setCurrency(String currency)
+  {
+    this.currency = currency;
+  }
+
+  public BankAccount getGiverAccount()
+  {
+    return giverAccount;
+  }
+
+  public void setGiverAccount(BankAccount giverAccount)
+  {
+    this.giverAccount = giverAccount;
+  }
+
+  public String getBeneficiaryAccountNumber()
+  {
+    return beneficiaryAccountNumber;
+  }
+
+  public void setBeneficiaryAccountNumber(String beneficiaryAccountNumber)
+  {
+    this.beneficiaryAccountNumber = beneficiaryAccountNumber;
+  }
+
+  public String getBeneficiaryName()
+  {
+    return beneficiaryName;
+  }
+
+  public void setBeneficiaryName(String beneficiaryName)
+  {
+    this.beneficiaryName = beneficiaryName;
+  }
+
+  public String getCommunication()
+  {
+    return communication;
+  }
+
+  public void setCommunication(String communication)
+  {
+    this.communication = communication;
+  }
+
+  public ZonedDateTime getCreationDate()
+  {
+    return creationDate;
+  }
+
+  public void setCreationDate(ZonedDateTime creationDate)
+  {
+    this.creationDate = creationDate;
+  }
+
+  public PaymentStatus getStatus()
+  {
+    return status;
+  }
+
+  public void setStatus(PaymentStatus status)
+  {
+    this.status = status;
+  }
 }

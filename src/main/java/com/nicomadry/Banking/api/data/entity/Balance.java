@@ -5,6 +5,7 @@ import com.nicomadry.Banking.api.data.model.IdentifiableEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(schema = "public", name = "balance", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Balance extends IdentifiableEntity {
 
-  @NotEmpty
+  @NotNull
   @Column(name = "amount", nullable = false)
   private float amount;
 
@@ -27,6 +28,11 @@ public class Balance extends IdentifiableEntity {
   @Column(name = "type", nullable = false)
   @Size(min = 9, max = 10)
   private BalanceType type;
+
+  public Balance()
+  {
+    // empty constructor for hibernate
+  }
 
   public float getAmount()
   {

@@ -1,9 +1,8 @@
 package com.nicomadry.Banking.itl.filter;
 
 import com.nicomadry.Banking.api.data.annotation.Authenticated;
+import com.nicomadry.Banking.api.service.JwtKeyService;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.jboss.logging.Logger;
 
 import javax.annotation.Priority;
@@ -26,10 +25,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
   private Logger logger;
 
+  private JwtKeyService jwtKeyService;
+
   @Inject
-  public void init(Logger logger)
+  public void init(Logger logger,JwtKeyService jwtKeyService)
   {
     this.logger = logger;
+    this.jwtKeyService = jwtKeyService;
   }
 
   @Override
@@ -48,10 +50,12 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     try {
       // Validate the token
-      Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // TODO: Change with custom signing key
+      Key key = jwtKeyService.generateKey();
       logger.info("Created Key: " + key.toString());
+
       Jwts.parser().setSigningKey(key).parseClaimsJws(token);
       logger.info("#### valid token : " + token);
+
     } catch (Exception e) {
       logger.error("#### invalid token : " + token);
       containerRequestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());

@@ -44,6 +44,7 @@ public class UserRepository {
     }
 
     String salt = PasswordUtils.getSalt();
+    logger.info("Generated Salt: " + salt);
 
     User user = new User(userDTO);
 
